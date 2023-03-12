@@ -53,7 +53,7 @@ export const Layout: FC<Props> = ({
       </header>
 
       <main>
-        <div className='mx-auto max-w-800px py-10 px-4'>{children}</div>
+        <div className='mx-auto max-w-900px py-10 px-4'>{children}</div>
       </main>
     </div>
   )
