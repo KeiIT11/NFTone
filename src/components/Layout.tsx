@@ -27,7 +27,7 @@ export const Layout: FC<Props> = ({
       </header>
 
       <main>
-        <div className='mx-auto max-w-900px my-30 px-4'>{children}</div>
+        <div className='mx-auto max-w-750px my-20 px-4'>{children}</div>
       </main>
     </div>
   )
