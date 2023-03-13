@@ -40,7 +40,7 @@ export const Form: FC<Props> = ({ onSubmit }) => {
           <Radio.Group
             key={index}
             {...form.getInputProps(`answers.${index}`)}
-            label={`質問 ${index + 1}　${questions[index]}`}
+            label={`質問 ${index + 1}　${questions[index].question}`}
             size='md'
             withAsterisk
             onChange={e => form.setFieldValue(`answers.${index}`, Number(e))}
