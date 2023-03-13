@@ -2,18 +2,24 @@ import { Layout } from '@/components/Layout'
 import { Answers, Form } from '@/components/form'
 import { questions } from '@/constants/question'
 import { Center } from '@mantine/core'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
-type QuestionResults = { question: string; value: number }[]
+type RGB = { R: number; G: number; B: number }
 
 export default function Home() {
-  const onSubmit = useCallback((e: Answers) => {
-    // 質問と結果をマージ ex) [{question: "あなたは？", value: 5}, ...]
-    const res: QuestionResults = e.answers.map((v, i) => ({
-      question: questions[i],
-      value: v,
-    }))
+  const [rgb, setRgb] = useState<RGB>()
 
+  const onSubmit = useCallback((e: Answers) => {
+    let res: RGB = { R: 0, G: 0, B: 0 }
+
+    for (let i = 0; i < e.answers.length; i++) {
+      const answer = e.answers[i]
+      res['R'] += questions[i].weight['R'] * answer
+      res['G'] += questions[i].weight['G'] * answer
+      res['B'] += questions[i].weight['B'] * answer
+    }
+
+    setRgb(res)
     console.log(res)
   }, [])
 
@@ -22,6 +28,7 @@ export default function Home() {
       <Center>
         <Form onSubmit={onSubmit} />
       </Center>
+      {JSON.stringify(rgb)}
     </Layout>
   )
 }
