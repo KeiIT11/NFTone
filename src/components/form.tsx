@@ -78,6 +78,7 @@ export const Form: FC<Props> = ({ onSubmit }) => {
           </Button>
         </div>
 
+        {/* NOTE: 色のテストのため。不要になれば消す */}
         <div>
           <Button
             type='submit'
