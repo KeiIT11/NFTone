@@ -77,6 +77,56 @@ export const Form: FC<Props> = ({ onSubmit }) => {
             送信
           </Button>
         </div>
+
+        <div>
+          <Button
+            type='submit'
+            onClick={() => {
+              form.setValues({ answers: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] })
+            }}
+          >
+            非常にそう思わない
+          </Button>
+          <Button
+            type='submit'
+            onClick={() => {
+              form.setValues({ answers: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] })
+            }}
+          >
+            非常にそう思う
+          </Button>
+          <Button
+            type='submit'
+            onClick={() => {
+              const val1 = Math.round(Math.random() * (5 - 1) + 1)
+              const val2 = Math.round(Math.random() * (5 - 1) + 1)
+              const val3 = Math.round(Math.random() * (5 - 1) + 1)
+              const val4 = Math.round(Math.random() * (5 - 1) + 1)
+              const val5 = Math.round(Math.random() * (5 - 1) + 1)
+              const val6 = Math.round(Math.random() * (5 - 1) + 1)
+              const val7 = Math.round(Math.random() * (5 - 1) + 1)
+              const val8 = Math.round(Math.random() * (5 - 1) + 1)
+              const val9 = Math.round(Math.random() * (5 - 1) + 1)
+              const val10 = Math.round(Math.random() * (5 - 1) + 1)
+              form.setValues({
+                answers: [
+                  val1,
+                  val2,
+                  val3,
+                  val4,
+                  val5,
+                  val6,
+                  val7,
+                  val8,
+                  val9,
+                  val10,
+                ],
+              })
+            }}
+          >
+            ランダム
+          </Button>
+        </div>
       </Stack>
     </form>
   )
