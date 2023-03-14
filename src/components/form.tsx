@@ -1,4 +1,4 @@
-import { Button, Group, Radio, Stack, TextInput } from '@mantine/core'
+import { Button, Center, Group, Radio, Stack, TextInput } from '@mantine/core'
 import { z } from 'zod'
 import { FC } from 'react'
 import { useForm, zodResolver } from '@mantine/form'
@@ -72,11 +72,17 @@ export const Form: FC<Props> = ({ onSubmit }) => {
             </Group>
           </Radio.Group>
         ))}
-        <div>
-          <Button type='submit' className='mt-4'>
+        <Center>
+          <Button
+            type='submit'
+            className='mt-4 w-30 duration-500 hover:(shadow-md shadow-gray-500 transform translate-y-[-5px])'
+            color='dark'
+            radius='xl'
+            size='lg'
+          >
             送信
           </Button>
-        </div>
+        </Center>
 
         {/* NOTE: 色のテストのため。不要になれば消す */}
         <div>
