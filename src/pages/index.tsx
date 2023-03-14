@@ -1,8 +1,8 @@
 import { Layout } from '@/components/Layout'
 import { Answers, Form } from '@/components/form'
 import { questions } from '@/constants/question'
+import { changeColorToImage } from '@/utils/changeColorToImage'
 import { RGB, generateGradientColor } from '@/utils/generateGradientColor'
-import { Center } from '@mantine/core'
 import { useCallback, useState } from 'react'
 
 export default function Home() {
@@ -20,23 +20,36 @@ export default function Home() {
 
     setRgb(res)
     console.log(res)
+
+    const buffer = changeColorToImage(res)
+    if (!buffer) return
+    // ここでbufferを送る処理を書く
+    console.log('buffer: ', buffer)
   }, [])
 
   return (
-    <Layout title='Topページ'>
-      <Center>
+    <Layout title='NFT Personality Test 質問ページ'>
+      <h2 className='bg-black p-10 rounded-2xl shadow-md shadow-black'>
+        <div className='text-xl font-bold bg-gradient-to-r bg-clip-text font-bold from-red-600 to-violet-400 text-transparent'>
+          「NFT Personality
+          Test」はあなたの性格を診断し、それに基づいたカラーのNFTを作成するアプリです。
+          下記の10個の質問に答えて、あなたの魅力的な一面を表現しましょう。
+          <br />
+          それでは、さっそく始めましょう！
+        </div>
+      </h2>
+
+      <div className='mt-20'>
         <Form onSubmit={onSubmit} />
-      </Center>
+      </div>
+
       {rgb && (
         <>
+          <p>これがあなたの色です</p>
           {JSON.stringify(rgb)}
           <div
             className='h-100 rounded-2xl'
             style={{ background: `${generateGradientColor(rgb)}` }}
-          ></div>
-          <div
-            className='h-100 rounded-2xl'
-            style={{ background: `rgb(${rgb.R},${rgb.G},${rgb.B})` }}
           ></div>
         </>
       )}
