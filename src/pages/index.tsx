@@ -3,29 +3,38 @@ import { Answers, Form } from '@/components/form'
 import { questions } from '@/constants/question'
 import { changeColorToImage } from '@/utils/changeColorToImage'
 import { RGB, generateGradientColor } from '@/utils/generateGradientColor'
-import { useCallback, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 
 export default function Home() {
   const [rgb, setRgb] = useState<RGB>()
+  const ref = useRef<HTMLDivElement>(null)
 
-  const onSubmit = useCallback((e: Answers) => {
-    let res: RGB = { R: 128, G: 128, B: 128 }
-
-    for (let i = 0; i < e.answers.length; i++) {
-      const answer = e.answers[i] - 3
-      res['R'] += questions[i].weight['R'] * answer
-      res['G'] += questions[i].weight['G'] * answer
-      res['B'] += questions[i].weight['B'] * answer
-    }
-
-    setRgb(res)
-    console.log(res)
-
-    const buffer = changeColorToImage(res)
-    if (!buffer) return
-    // ここでbufferを送る処理を書く
-    console.log('buffer: ', buffer)
+  const onScrollToBottom = useCallback(() => {
+    ref!.current!.scrollIntoView({ behavior: 'smooth' })
   }, [])
+
+  const onSubmit = useCallback(
+    (e: Answers) => {
+      let res: RGB = { R: 128, G: 128, B: 128 }
+
+      for (let i = 0; i < e.answers.length; i++) {
+        const answer = e.answers[i] - 3
+        res['R'] += questions[i].weight['R'] * answer
+        res['G'] += questions[i].weight['G'] * answer
+        res['B'] += questions[i].weight['B'] * answer
+      }
+
+      onScrollToBottom()
+      setRgb(res)
+      console.log(res)
+
+      const buffer = changeColorToImage(res)
+      if (!buffer) return
+      // ここでbufferを送る処理を書く
+      console.log('buffer: ', buffer)
+    },
+    [onScrollToBottom],
+  )
 
   return (
     <Layout title='NFTone 質問ページ'>
@@ -34,7 +43,6 @@ export default function Home() {
         下記の10個の質問に答えて、あなたの魅力的な一面を表現しましょう。
         <br />
         それでは、さっそく始めましょう！
-        </div>
       </h2>
 
       <div className='mt-20'>
@@ -42,15 +50,20 @@ export default function Home() {
       </div>
 
       {rgb && (
-        <>
-          <p>これがあなたの色です</p>
-          {JSON.stringify(rgb)}
+        <div className='mt-10'>
+          <p className='text-center text-xl'>
+            これがあなたの色です！
+            <br />
+            {JSON.stringify(rgb)}
+          </p>
           <div
-            className='h-100 rounded-2xl'
+            className='h-100 rounded-2xl mt-4'
             style={{ background: `${generateGradientColor(rgb)}` }}
           ></div>
-        </>
+        </div>
       )}
+
+      <div ref={ref} aria-hidden={true} />
     </Layout>
   )
 }
