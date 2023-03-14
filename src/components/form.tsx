@@ -75,7 +75,7 @@ export const Form: FC<Props> = ({ onSubmit }) => {
         <Center>
           <Button
             type='submit'
-            className='mt-4 w-30 duration-500 hover:(shadow-md shadow-gray-500 transform translate-y-[-5px])'
+            className='mt-4 w-30 border-2 border-gray-500 duration-500 hover:(shadow-md shadow-gray-500 transform translate-y-[-5px])'
             color='dark'
             radius='xl'
             size='lg'
