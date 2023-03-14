@@ -20,27 +20,28 @@ const METAPLEX = Metaplex.make(SOLANA_CONNECTION)
 const CONFIG = {
     uploadPath: 'uploads/',
     //imgFileName: `${Math.random()}.png`,
-    imgFileName: "image.png",
+    imgFileName: 'image.png',
     imgType: 'image/png',
-    imgName: 'QuickNode Pixel',
-    description: 'Pixel infrastructure for everyone!',
+    imgName: 'NFTone',
+    description: 'NFTone express your personality.',
     attributes: [
         {trait_type: 'Speed', value: 'Quick'},
         {trait_type: 'Type', value: 'Pixelated'},
         {trait_type: 'Background', value: 'QuickNode Blue'}
     ],
     sellerFeeBasisPoints: 500,//500 bp = 5%
-    symbol: 'QNPIX',
+    symbol: 'NFTONE',
     creators: [
         {address: WALLET.publicKey, share: 100}
     ]
 };
-    
+    //buffer: Buffer
 
 async function uploadImage(buffer: Buffer,fileName: string): Promise<string> {
     console.log(`Step 1 - Uploading Image`);
     //const imgBuffer = fs.readFileSync(filePath+fileName);
     const imgMetaplexFile = toMetaplexFile(buffer,fileName);
+    //const imgMetaplexFile = toMetaplexFile(buffer,fileName);
     const imgUri = await METAPLEX.storage().upload(imgMetaplexFile);
     console.log(`   Image URI:`,imgUri);
     return imgUri;
@@ -85,7 +86,8 @@ async function mintNft(metadataUri: string, name: string, sellerFee: number, sym
     );
     console.log(`   Success!🎉`);
     console.log(`   Minted NFT: https://explorer.solana.com/address/${nft.address}?cluster=devnet`);
-    return `https://explorer.solana.com/address/${nft.address}?cluster=devnet`
+    const nfturi = `https://explorer.solana.com/address/${nft.address}?cluster=devnet`
+    return nfturi
   }
 export async function createNFT(buffer: Buffer) {
   console.log(
@@ -105,7 +107,7 @@ export async function createNFT(buffer: Buffer) {
     CONFIG.attributes,
   )
   //Step 3 - Mint NFT
-  const nftUri = mintNft(
+  const nftUri = await mintNft(
     metadataUri,
     CONFIG.imgName,
     CONFIG.sellerFeeBasisPoints,

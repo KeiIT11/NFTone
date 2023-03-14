@@ -4,7 +4,7 @@ import { FC } from 'react'
 import { useForm, zodResolver } from '@mantine/form'
 import { questions } from '@/constants/question'
 
-const answerSchema = z.number().min(1, { message: '選択は必須です' })
+const answerSchema = z.number().min(1, { message: 'You have to choose' })
 
 const schema = z.object({
   answers: z.tuple([
@@ -40,7 +40,7 @@ export const Form: FC<Props> = ({ onSubmit }) => {
           <Radio.Group
             key={index}
             {...form.getInputProps(`answers.${index}`)}
-            label={`質問 ${index + 1}　${questions[index].question}`}
+            label={`Q${index + 1}　${questions[index].question}`}
             size='md'
             withAsterisk
             onChange={e => form.setFieldValue(`answers.${index}`, Number(e))}
@@ -52,11 +52,11 @@ export const Form: FC<Props> = ({ onSubmit }) => {
           >
             <Group mt='xl'>
               {[
-                { label: '非常にそう思う', value: 5 },
-                { label: 'そう思う', value: 4 },
-                { label: 'どちらでもない', value: 3 },
-                { label: 'そう思わない', value: 2 },
-                { label: '非常にそう思わない', value: 1 },
+                { label: 'Strongly agree ', value: 5 },
+                { label: 'Agree', value: 4 },
+                { label: 'Neutral', value: 3 },
+                { label: 'Disagree', value: 2 },
+                { label: 'Strongly disagree', value: 1 },
               ].map(v => (
                 <Radio
                   key={v.value}
@@ -80,7 +80,7 @@ export const Form: FC<Props> = ({ onSubmit }) => {
             radius='xl'
             size='lg'
           >
-            送信
+            Submit
           </Button>
         </Center>
 
