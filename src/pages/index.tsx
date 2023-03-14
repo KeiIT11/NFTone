@@ -4,9 +4,12 @@ import { questions } from '@/constants/question'
 import { changeColorToImage } from '@/utils/changeColorToImage'
 import { RGB, generateGradientColor } from '@/utils/generateGradientColor'
 import { useCallback, useState } from 'react'
+import { createNFT } from '@/utils/solana'
+import { Button } from '@mantine/core'
 
 export default function Home() {
   const [rgb, setRgb] = useState<RGB>()
+  const [imageBuffer, setImageBuffer] = useState<Buffer>()
 
   const onSubmit = useCallback((e: Answers) => {
     let res: RGB = { R: 128, G: 128, B: 128 }
@@ -20,12 +23,23 @@ export default function Home() {
 
     setRgb(res)
     console.log(res)
-
+    
     const buffer = changeColorToImage(res)
     if (!buffer) return
     // ここでbufferを送る処理を書く
+    setImageBuffer(buffer)
     console.log('buffer: ', buffer)
+    //const nftUri = createNFT(buffer)
+    //console.log(nftUri)
   }, [])
+
+  
+  // onSubmitで、setImageBuffer(buffer)
+  const onClickNFTButton = useCallback(async () => {
+    if (!imageBuffer) return
+    const nftUri = createNFT(imageBuffer)
+    console.log(nftUri)
+  }, [imageBuffer])
 
   return (
     <Layout title='NFT Personality Test 質問ページ'>
@@ -53,6 +67,9 @@ export default function Home() {
           ></div>
         </>
       )}
+      <Button onClick={onClickNFTButton}>
+        createNFT
+      </Button>
     </Layout>
   )
 }
