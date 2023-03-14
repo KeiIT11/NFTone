@@ -6,24 +6,19 @@ type Props = {
   title?: string
 }
 
-export const Layout: FC<Props> = ({
-  title = 'nft-personality-test',
-  children,
-}) => {
+export const Layout: FC<Props> = ({ title = 'Color My NFT', children }) => {
   return (
-    <div className='min-h-screen bg-gray-100 overflow-hidden'>
+    <div className='min-h-screen bg-black overflow-hidden'>
       <Head>
         <title>{title}</title>
-        <meta name='description' content='nft-personality-test' />
+        <meta name='description' content='NFTone' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <header className='bg-black shadow-md shadow-black w-full'>
-        <nav className='text-center'>
-          <h1 className='cursor-pointer text-4xl font-bold py-20 bg-gradient-to-r bg-clip-text font-bold from-red-600 via-violet-400 to-blue-600 text-transparent'>
-            NFT Personality Test
-          </h1>
-        </nav>
+      <header className='bg-black shadow-lg shadow-gray-500 w-full text-center'>
+        <h1 className='text-4xl font-bold py-20 bg-gradient-to-r bg-clip-text font-bold from-red-600 via-violet-400 to-blue-600 text-transparent sm:(text-6xl py-30)'>
+          NFTone
+        </h1>
       </header>
 
       <main>

@@ -28,14 +28,12 @@ export default function Home() {
   }, [])
 
   return (
-    <Layout title='NFT Personality Test 質問ページ'>
-      <h2 className='bg-black p-10 rounded-2xl shadow-md shadow-black'>
-        <div className='text-xl font-bold bg-gradient-to-r bg-clip-text font-bold from-red-600 to-violet-400 text-transparent'>
-          「NFT Personality
-          Test」はあなたの性格を診断し、それに基づいたカラーのNFTを作成するアプリです。
-          下記の10個の質問に答えて、あなたの魅力的な一面を表現しましょう。
-          <br />
-          それでは、さっそく始めましょう！
+    <Layout title='NFTone 質問ページ'>
+      <h2 className='p-10 text-white shadow-lg shadow-gray-500 rounded-2xl shadow-md shadow-black text-xl font-bold  bg-gradient-to-r font-bold from-red-600 to-violet-400'>
+        「NFTone」はあなたの性格を診断し、それに基づいたカラーのNFTを作成するアプリです。
+        下記の10個の質問に答えて、あなたの魅力的な一面を表現しましょう。
+        <br />
+        それでは、さっそく始めましょう！
         </div>
       </h2>
 
