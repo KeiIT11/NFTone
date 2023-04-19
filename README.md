@@ -3,12 +3,6 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/81548811/233148201-48f2a40b-66c3-4422-a461-c841d797eadb.png" alt="Project Image" width="90%">
 </p> 
-![NFTone-質問ページ (1)](https://user-images.githubusercontent.com/81548811/233148201-48f2a40b-66c3-4422-a461-c841d797eadb.png)
-
-
-
-![NFTone-質問ページ](https://user-images.githubusercontent.com/81548811/233146945-30a52e6d-1e5f-4ea7-a406-60042c23588c.png)
-
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
